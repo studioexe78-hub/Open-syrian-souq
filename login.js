@@ -33,7 +33,7 @@ if (loginForm) {
 
                 if (role === "customer") {
                     alert(`أهلاً بك مجدداً يا ${name} (زبون)`);
-                    window.location.href = "index.html"; // مؤقتاً للرئيسية لحين بناء صفحة التصفح
+                    window.location.href = "market.html"; // مؤقتاً للرئيسية لحين بناء صفحة التصفح
                 } else if (role === "vendor") {
                     alert(`أهلاً بعودتك يا سيد ${name} (صاحب متجر: ${userData.shopName})`);
                     window.location.href = "vendor-dashboard.html"; // سنبني لوحة تحكم التاجر لاحقاً
