@@ -48,7 +48,7 @@ async function loadVendorProducts() {
 
     try {
         // عمل استعلام (Query) لجلب المنتجات اللي بملكها هاد الـ vendorId فقط
-        const q = query(collection(db, "products"), where("vendorId", "===", currentVendorId));
+        const q = query(collection(db, "products"), where("vendorId", "==", currentVendorId));
         const querySnapshot = await getDocs(q);
 
         // تنظيف الشبكة قبل العرض لمنع التكرار
