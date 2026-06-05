@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المول العام | السوق السوري المفتوح</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2 family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="market-body">
+
+    <header class="market-header">
+        <div class="container market-nav-container">
+            <div class="logo">
+                <h2>🛍️ مول السوق المفتوح</h2>
+            </div>
+            <div class="user-controls">
+                <span id="customer-name-display">جاري التحميل...</span>
+                <button id="btn-market-logout" class="btn-logout">تسجيل الخروج</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="search-filter-section">
+        <div class="container search-box-container">
+            <input type="text" id="search-input" placeholder="🔍 شو عم تدور اليوم؟ (اكتب اسم المنتج هنا...)" class="search-input">
+            
+            <div class="filter-dropdowns">
+                <select id="filter-city">
+                    <option value="">كل المحافظات 📍</option>
+                    <option value="دمشق">دمشق</option>
+                    <option value="ريف دمشق">ريف دمشق</option>
+                    <option value="حلب">حلب</option>
+                    <option value="حمص">حمص</option>
+                    <option value="حماة">حماة</option>
+                    <option value="اللاذقية">اللاذقية</option>
+                    <option value="طرطوس">طرطوس</option>
+                    <option value="السويداء">السويداء</option>
+                    <option value="درعا">درعا</option>
+                    <option value="إدلب">إدلب</option>
+                </select>
+
+                <select id="filter-category">
+                    <option value="">كل الأقسام 📦</option>
+                    <option value="موبايلات وإلكترونيات">موبايلات وإلكترونيات</option>
+                    <option value="سيارات ومركبات">سيارات ومركبات</option>
+                    <option value="عقارات ومنازل">عقارات ومنازل</option>
+                    <option value="ألبسة وأحذية">ألبسة وأحذية</option>
+                    <option value="أثاث ومنزل">أثاث ومنزل</option>
+                    <option value="خدمات وأعمال">خدمات وأعمال</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <section class="slider-section container">
+        <h4 class="market-section-title">🔥 عروض مختارة لك اليوم</h4>
+        <div class="swiper hero-swiper">
+            <div class="swiper-wrapper" id="slider-wrapper">
+                <div class="swiper-slide loading-slide">جاري سحب العروض المميزة...</div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </section>
+
+    <main class="container market-main">
+        
+        <section class="market-block">
+            <h4 class="market-section-title">✨ أحدث ما تم نشره (وصل حديثاً)</h4>
+            <div id="new-products-grid" class="products-grid">
+                </div>
+        </section>
+
+        <section class="market-block" id="all-products-block" style="margin-top: 50px;">
+            <h4 class="market-section-title" id="grid-title">🛒 كل المنتجات المتوفرة في السوق</h4>
+            <div id="market-products-grid" class="products-grid">
+                </div>
+            <div id="market-no-results" class="no-products" style="display: none;">
+                <p>للأسف، لم نجد أي منتجات تطابق بحثك أو خيارات الفلترة المحددة! 🤷‍♂️</p>
+            </div>
+        </section>
+    </main>
+
+    <div id="details-modal" class="modal-backdrop">
+        <div class="modal-content" style="max-width: 600px;">
+            <div class="modal-header">
+                <h3 id="modal-prod-name">اسم المنتج</h3>
+                <span id="btn-close-details" class="close-modal-btn">&times;</span>
+            </div>
+            <div class="modal-body-layout">
+                <img id="modal-prod-img" src="" alt="" style="width: 100%; max-height: 300px; object-fit: cover; border-radius: 10px; margin-bottom: 15px;">
+                <div class="modal-prod-info">
+                    <p class="prod-card-price" id="modal-prod-price" style="font-size: 1.5rem;">0 ل.س</p>
+                    <p><strong>🏪 المتجر البائع:</strong> <span id="modal-prod-vendor" style="color: #f97316; font-weight: bold;">...</span></p>
+                    <p><strong>📍 الموقع:</strong> <span id="modal-prod-city">...</span></p>
+                    <p><strong>📦 القسم:</strong> <span id="modal-prod-cat">...</span></p>
+                    <hr style="margin: 15px 0; border: 0; border-top: 1px solid #e2e8f0;">
+                    <p><strong>📝 تفاصيل ووصف المنتج:</strong></p>
+                    <p id="modal-prod-desc" style="color: #475569; line-height: 1.6; background: #f8fafc; padding: 12px; border-radius: 8px; margin-top: 5px;">...</p>
+                </div>
+            </div>
+            <div style="margin-top: 25px;">
+                <a id="btn-modal-whatsapp" href="#" target="_blank" class="btn" style="background-color: #22c55e; color: white; display: flex; justify-content: center; align-items: center; gap: 10px; text-decoration: none; font-weight: bold; font-size: 1.1rem; border-radius: 10px; padding: 12px;">
+                    💬 تواصل مع البائع عبر واتساب فوراً
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="market.js"></script>
+</body>
+</html>
