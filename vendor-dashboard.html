@@ -24,22 +24,46 @@
     </header>
 
     <main class="container dash-main">
+        <main class="container dash-main">
+        
         <div class="dash-welcome-section">
-            <h3>أهلاً بك في متجرك الافتراضي</h3>
-            <p>من هنا يمكنك إدارة إعلاناتك، رفع منتجات جديدة، ومتابعة زبائنك.</p>
+            <div class="welcome-text">
+                <h3>أهلاً بك في متجرك الافتراضي</h3>
+                <p>إدارة إعلاناتك، رفع منتجات جديدة، ومتابعة مبيعاتك في السوق السوري.</p>
+            </div>
             <button id="btn-open-modal" class="btn btn-vendor">+ إضافة منتج جديد</button>
         </div>
+
+        <section class="stats-container">
+            <div class="stat-card">
+                <div class="stat-icon" style="background-color: #eff6ff; color: #1e40af;">📦</div>
+                <div class="stat-info">
+                    <h5 id="stat-count">0</h5>
+                    <p>إجمالي المنتجات</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon" style="background-color: #fef3c7; color: #9a3412;">💰</div>
+                <div class="stat-info">
+                    <h5 id="stat-total-value">0 ل.س</h5>
+                    <p>قيمة البضاعة المعروضة</p>
+                </div>
+            </div>
+        </section>
 
         <hr class="dash-divider">
 
         <section class="my-products-section">
             <h4 class="section-title">منتجاتي المعروضة حالياً</h4>
+            
             <div id="no-products-msg" class="no-products">
                 <p>لا يوجد لديك أي منتجات معروضة حالياً. اضغط على "إضافة منتج جديد" لتبدأ البيع!</p>
             </div>
+            
             <div id="products-grid" class="products-grid"></div>
         </section>
     </main>
+
 
     <div id="product-modal" class="modal-backdrop">
         <div class="modal-content">
