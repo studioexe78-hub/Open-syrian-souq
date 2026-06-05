@@ -18,16 +18,7 @@ const statTotalValue = document.getElementById("stat-total-value");
 const noProductsMsg = document.getElementById("no-products-msg");
 const productsGrid = document.getElementById("products-grid");
 
-// عناصر واجهة قص الصور الذكية (التي نتحكم بها)
-const cropperModal = document.getElementById("cropper-modal");
-const imageToCrop = document.getElementById("image-to-crop");
-const btnCropDone = document.getElementById("btn-crop-done");
-const btnCropCancel = document.getElementById("btn-crop-cancel");
-const inputFile = document.getElementById("prod-image");
-
 let currentVendorId = null;
-let cropper = null;
-let croppedBlob = null; // هنا نقوم بتخزين الصورة المقصوصة للرفع
 
 // 1. التحقق من الدخول وتشغيل جلب المنتجات
 onAuthStateChanged(auth, async (user) => {
@@ -80,7 +71,9 @@ async function loadVendorProducts() {
 
             const cardHtml = `
                 <div class="product-card" id="prod-${prodId}">
-                    <img src="${product.imageUrl}" class="prod-card-img" alt="${product.name}">
+                    <div class="prod-card-img-wrapper">
+                        <img src="${product.imageUrl}" class="prod-card-img" alt="${product.name}">
+                    </div>
                     <div class="prod-card-body">
                         <span class="prod-card-tag">${product.category}</span>
                         <h4 class="prod-card-title">${product.name}</h4>
@@ -122,58 +115,12 @@ function activateDeleteButtons() {
     });
 }
 
-// 4. الـ Modal العادي (الفتح والإغلاق)
+// 4. الـ Modal (الفتح والإغلاق)
 btnOpenModal.addEventListener("click", () => productModal.classList.add("show"));
 btnCloseModal.addEventListener("click", () => productModal.classList.remove("show"));
 window.addEventListener("click", (e) => { if (e.target === productModal) productModal.classList.remove("show"); });
 
-// ==========================================================================
-// 5. محرك معالجة وقص الصورة (Cropper Engine)
-// ==========================================================================
-
-// أ) فتح مودال القص عند اختيار ملف الصورة
-inputFile.addEventListener("change", (e) => {
-    const files = e.target.files;
-    if (files && files.length > 0) {
-        const file = files[0];
-        const reader = new FileReader();
-        
-        reader.onload = (event) => {
-            imageToCrop.src = event.target.result;
-            cropperModal.classList.add("show"); 
-            
-            if (cropper) cropper.destroy(); 
-            cropper = new Cropper(imageToCrop, {
-                aspectRatio: 1 / 1, // نسبة مربعة ثابتة موحدة للموقع كاملاً
-                viewMode: 1,
-                background: false,
-                autoCropArea: 1
-            });
-        };
-        reader.readAsDataURL(file);
-    }
-});
-
-// ب) الضغط على "اعتماد وقص الصورة" (الزر البرتقالي) 🎯
-btnCropDone.addEventListener("click", () => {
-    if (!cropper) return;
-    
-    // تحويل المساحة المقصوصة إلى كائن Blob لرفعه بدلاً من الملف العشوائي القديم
-    cropper.getCropperCanvas().toBlob((blob) => {
-        croppedBlob = blob; 
-        cropperModal.classList.remove("show"); // إغلاق النافذة بنجاح
-        alert("تم اعتماد ضبط الصورة بنجاح! ✂️");
-    }, "image/jpeg", 0.9);
-});
-
-// جـ) زر إلغاء عملية القص
-btnCropCancel.addEventListener("click", () => {
-    cropperModal.classList.remove("show");
-    inputFile.value = ""; 
-    croppedBlob = null;
-});
-
-// د) فورم إرسال البيانات ونشر المنتج بالصورة الجديدة الموحدة
+// 5. فورم إضافة المنتج المباشر والسريع 🚀
 addProductForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     const name = document.getElementById("prod-name").value;
@@ -181,30 +128,29 @@ addProductForm.addEventListener("submit", async (e) => {
     const city = document.getElementById("prod-city").value;
     const category = document.getElementById("prod-category").value;
     const desc = document.getElementById("prod-desc").value;
+    const imageFile = document.getElementById("prod-image").files[0];
 
-    if (!croppedBlob) {
-        alert("الرجاء اختيار صورة للمنتج وضبط قصها أولاً!");
-        return;
-    }
+    if (!imageFile) return alert("الرجاء اختيار صورة للمنتج أولاً!");
 
     const submitBtn = addProductForm.querySelector("button[type='submit']");
-    submitBtn.textContent = "جاري رفع الصورة والنشر... ⏳";
+    submitBtn.textContent = "جاري الرفع والنشر الفوري... ⏳";
     submitBtn.disabled = true;
 
     try {
         const formData = new FormData();
-        // إرفاق الـ Blob الجديد المقصوص بدلاً من الـ imageFile القديم المبتور
-        formData.append("image", croppedBlob, "product.jpg");
+        formData.append("image", imageFile);
 
+        // رفع مباشر للسيرفر دون تضييع وقت
         const imgbbResponse = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
             method: "POST",
             body: formData
         });
         const imgbbData = await imgbbResponse.json();
-        if (!imgbbData.success) throw new Error("فشل الرفع لـ ImgBB");
+        if (!imgbbData.success) throw new Error("فشل رفع الصورة");
 
         const imageUrl = imgbbData.data.url;
 
+        // الحفظ بـ Firestore
         await addDoc(collection(db, "products"), {
             name: name,
             price: Number(price),
@@ -216,12 +162,11 @@ addProductForm.addEventListener("submit", async (e) => {
             createdAt: new Date()
         });
 
-        alert("تم النشر بالمقاس الموحد بنجاح! 🎉");
+        alert("تم نشر منتجك في السوق بنجاح وبشكل فوري! 🎉");
         addProductForm.reset();
-        croppedBlob = null;
         productModal.classList.remove("show");
         
-        loadVendorProducts();
+        loadVendorProducts(); // تحديث اللوحة فوراً
 
     } catch (error) {
         alert("حدث خطأ: " + error.message);
