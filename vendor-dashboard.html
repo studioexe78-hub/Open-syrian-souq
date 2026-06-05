@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم المتجر | السوق السوري المفتوح</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="dashboard-nav">
+        <div class="container dash-nav-container">
+            <div class="dash-logo">
+                <h2>🏪 لوحة تحكم المتجر</h2>
+            </div>
+            <div class="dash-user-info">
+                <span id="shop-title-display">جاري تحميل اسم المحل...</span>
+                <button id="btn-logout" class="btn-logout">تسجيل الخروج</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container dash-main">
+        <div class="dash-welcome-section">
+            <h3>أهلاً بك في متجرك الافتراضي</h3>
+            <p>من هنا يمكنك إدارة إعلاناتك، رفع منتجات جديدة، ومتابعة زبائنك.</p>
+            <button id="btn-open-modal" class="btn btn-vendor">+ إضافة منتج جديد</button>
+        </div>
+
+        <hr class="dash-divider">
+
+        <section class="my-products-section">
+            <h4 class="section-title">منتجاتي المعروضة حالياً</h4>
+            <div id="no-products-msg" class="no-products">
+                <p>لا يوجد لديك أي منتجات معروضة حالياً. اضغط على "إضافة منتج جديد" لتبدأ البيع!</p>
+            </div>
+            <div id="products-grid" class="products-grid"></div>
+        </section>
+    </main>
+
+    <div id="product-modal" class="modal-backdrop">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>📦 إضافة منتج جديد للمول</h3>
+                <span id="btn-close-modal" class="close-modal-btn">&times;</span>
+            </div>
+            
+            <form id="add-product-form">
+                <div class="input-group">
+                    <label for="prod-name">اسم المنتج / الإعلان</label>
+                    <input type="text" id="prod-name" placeholder="مثال: شاومي نوت 13 برو" required>
+                </div>
+
+                <div class="grid-2-col">
+                    <div class="input-group">
+                        <label for="prod-price">السعر (بالليرة السورية)</label>
+                        <input type="number" id="prod-price" placeholder="مثال: 4500000" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="prod-city">المحافظة المتواجد بها المنتج</label>
+                        <select id="prod-city" required>
+                            <option value="" disabled selected>اختر المحافظة</option>
+                            <option value="دمشق">دمشق</option>
+                            <option value="ريف dمشق">ريف دمشق</option>
+                            <option value="حلب">حلب</option>
+                            <option value="حمص">حمص</option>
+                            <option value="حماة">حماة</option>
+                            <option value="اللاذقية">اللاذقية</option>
+                            <option value="طرطوس">طرطوس</option>
+                            <option value="السويداء">السويداء</option>
+                            <option value="درعا">درعا</option>
+                            <option value="طرطوس">طرطوس</option>
+                            <option value="إدلب">إدلب</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="prod-category">قسم المنتج</label>
+                    <select id="prod-category" required>
+                        <option value="" disabled selected>اختر القسم المناسب</option>
+                        <option value="موبايلات وإلكترونيات">موبايلات وإلكترونيات</option>
+                        <option value="سيارات ومركبات">سيارات ومركبات</option>
+                        <option value="عقارات ومنازل">عقارات ومنازل</option>
+                        <option value="ألبسة وأحذية">ألبسة وأحذية</option>
+                        <option value="أثاث ومنزل">أثاث ومنزل</option>
+                        <option value="خدمات وأعمال">خدمات وأعمال</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="prod-desc">وصف المنتج (التفاصيل، الحالة، طريقة التوصيل)</label>
+                    <textarea id="prod-desc" rows="4" placeholder="اكتب تفاصيل المنتج ومواصفاته هنا..." required></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label for="prod-image">صورة المنتج</label>
+                    <input type="file" id="prod-image" accept="image/*" required>
+                </div>
+
+                <button type="submit" class="btn btn-vendor btn-block">نشر المنتج في السوق</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
