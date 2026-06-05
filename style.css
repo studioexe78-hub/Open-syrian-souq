@@ -1,608 +1,339 @@
 /* 
    ==========================================================================
-   PREMIUM E-COMMERCE DESIGN SYSTEM (2025 EDITION)
-   Designed for: Multi-Vendor Platform & Shopping Mall
-   Style: Modern Luxury / Minimalist / High-End
+   PREMIUM GOLD & ANTHRACITE DESIGN SYSTEM
+   Theme: Luxury Gold, Charcoal Gray, and White
+   Focus: High-End Animations & Visual Prestige
    ========================================================================== 
 */
 
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-    /* Core Palette - Luxury Dark & Gold */
-    --primary: #0f172a;          /* Midnight Navy */
-    --primary-light: #1e293b;
-    --accent: #c5a059;           /* Refined Gold */
-    --accent-hover: #b38f48;
+    /* The Royal Palette */
+    --gold-primary: #D4AF37;      /* Metallic Gold */
+    --gold-light: #F9E29C;        /* Soft Gold Glow */
+    --gold-dark: #996515;         /* Deep Bronze Gold */
+    --gray-dark: #1A1A1A;         /* Charcoal Anthracite */
+    --gray-mid: #333333;          /* Rich Gray */
+    --gray-light: #F5F5F5;        /* Premium Off-White */
     
-    /* Vendor & Customer Distinction (Luxury Tones) */
-    --vendor-main: #b45309;      /* Deep Copper/Amber */
-    --vendor-bg: #fff7ed;
-    --customer-main: #065f46;    /* Emerald Green */
-    --customer-bg: #ecfdf5;
+    /* Semantic & UI */
+    --white: #FFFFFF;
+    --text-main: #1A1A1A;
+    --text-muted: #666666;
+    --border-color: #E0E0E0;
+    --error: #D32F2F;
     
-    /* Semantic Colors */
-    --success: #10b981;
-    --error: #ef4444;
-    --warning: #f59e0b;
-    --info: #3b82f6;
-    
-    /* Neutrals */
-    --white: #ffffff;
-    --bg-main: #fcfcfd;
-    --bg-alt: #f8fafc;
-    --border: #e2e8f0;
-    --border-light: #f1f5f9;
-    
-    /* Text */
-    --text-heading: #0f172a;
-    --text-body: #334155;
-    --text-muted: #64748b;
-    --text-light: #94a3b8;
-    
-    /* Shadows - Soft & Professional */
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-    --shadow-premium: 0 25px 50px -12px rgba(15, 23, 42, 0.08);
-
-    /* Spacing & Radii */
-    --radius-sm: 6px;
-    --radius-md: 12px;
-    --radius-lg: 20px;
-    --radius-full: 9999px;
-    --container-max: 1280px;
+    /* Luxury Effects */
+    --gold-gradient: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+    --dark-gradient: linear-gradient(135deg, #2c3e50, #000000);
+    --shadow-gold: 0 10px 30px rgba(191, 149, 63, 0.3);
+    --shadow-dark: 0 15px 35px rgba(0, 0, 0, 0.2);
+    --transition-royal: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-/* 1. Base Reset & Typography
+/* 1. Global Reset & Prestige Base
    ========================================================================== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-}
-
-html {
-    scroll-behavior: smooth;
-    font-size: 16px;
+    font-family: 'Cairo', sans-serif;
 }
 
 body {
-    font-family: 'Cairo', sans-serif;
-    background-color: var(--bg-main);
-    color: var(--text-body);
-    line-height: 1.7;
+    background-color: var(--gray-light);
+    color: var(--text-main);
+    line-height: 1.8;
     overflow-x: hidden;
-    direction: rtl; /* Arabic support by default */
+    direction: rtl;
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-ul { list-style: none; }
-
-img {
-    max-width: 100%;
-    display: block;
-}
-
-.container {
-    width: 92%;
-    max-width: var(--container-max);
-    margin: 0 auto;
-}
-
-/* 2. Global Components (Buttons, Cards, Inputs)
+/* 2. Animations (The "Wow" Factor)
    ========================================================================== */
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 12px 28px;
-    border-radius: var(--radius-md);
-    font-weight: 600;
-    font-size: 0.95rem;
-    cursor: pointer;
-    border: none;
-    gap: 8px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    white-space: nowrap;
+@keyframes goldGlow {
+    0% { box-shadow: 0 0 5px var(--gold-primary); }
+    50% { box-shadow: 0 0 20px var(--gold-primary); }
+    100% { box-shadow: 0 0 5px var(--gold-primary); }
 }
 
-.btn-primary {
-    background-color: var(--primary);
-    color: var(--white);
+@keyframes slideUpFade {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-.btn-primary:hover {
-    background-color: var(--primary-light);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
+@keyframes shine {
+    0% { left: -100%; }
+    100% { left: 100%; }
 }
 
-.btn-accent {
-    background-color: var(--accent);
-    color: var(--white);
-}
+.animate-up { animation: slideUpFade 0.8s ease forwards; }
 
-.btn-accent:hover {
-    background-color: var(--accent-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(197, 160, 89, 0.3);
-}
-
-.btn-outline {
-    background: transparent;
-    border: 1.5px solid var(--border);
-    color: var(--text-body);
-}
-
-.btn-outline:hover {
-    border-color: var(--primary);
-    background: var(--bg-alt);
-}
-
-/* Luxury Card Effect */
-.card {
-    background: var(--white);
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--border-light);
-    padding: 2rem;
-    box-shadow: var(--shadow-premium);
-    transition: all 0.4s ease;
-}
-
-.card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 30px 60px -12px rgba(15, 23, 42, 0.12);
-}
-
-/* 3. Navigation (Navbar)
+/* 3. Navigation (The Golden Gate)
    ========================================================================== */
 .navbar {
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    padding: 1rem 0;
+    background: rgba(26, 26, 26, 0.98);
+    border-bottom: 2px solid var(--gold-primary);
+    padding: 18px 0;
     position: sticky;
     top: 0;
     z-index: 1000;
-    transition: all 0.3s ease;
-}
-
-.navbar .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    box-shadow: var(--shadow-dark);
 }
 
 .logo h1 {
-    font-size: 1.75rem;
+    font-size: 1.8rem;
     font-weight: 800;
-    letter-spacing: -0.5px;
-    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    background: var(--gold-gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-}
-
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .nav-links a {
+    color: var(--white);
+    text-decoration: none;
     font-weight: 600;
-    font-size: 0.9rem;
-    padding: 0.5rem 1rem;
-    color: var(--text-body);
+    margin-right: 20px;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: var(--transition-royal);
+    border: 1px solid transparent;
 }
 
 .nav-links a:hover {
-    color: var(--accent);
+    color: var(--gold-primary);
+    border-color: var(--gold-primary);
+    background: rgba(212, 175, 55, 0.05);
 }
 
-/* 4. Hero Section
+.btn-login { color: var(--gold-primary) !important; }
+.btn-register { 
+    background: var(--gold-gradient) !important; 
+    color: var(--gray-dark) !important;
+    border: none !important;
+}
+
+/* 4. Hero Section (Prestige Intro)
    ========================================================================== */
 .hero {
-    background-color: var(--primary);
-    background-image: 
-        radial-gradient(circle at 20% 30%, rgba(197, 160, 89, 0.08) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
-    color: var(--white);
-    padding: 120px 0 100px;
+    background: var(--dark-gradient);
+    padding: 150px 0 120px;
     text-align: center;
+    color: var(--white);
     position: relative;
     overflow: hidden;
 }
 
-.hero::after {
+.hero::before {
     content: '';
     position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100px;
-    background: linear-gradient(to top, var(--bg-main), transparent);
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+    opacity: 0.2;
 }
 
 .hero-content h2 {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 800;
-    line-height: 1.2;
-    margin-bottom: 1.5rem;
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin-bottom: 20px;
+    color: var(--gold-light);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    animation: slideUpFade 1s ease;
 }
 
 .hero-content p {
-    font-size: 1.25rem;
-    color: var(--text-light);
-    max-width: 700px;
-    margin: 0 auto 2.5rem;
-    font-weight: 400;
+    font-size: 1.3rem;
+    color: #CCCCCC;
+    max-width: 800px;
+    margin: 0 auto;
+    animation: slideUpFade 1.2s ease;
 }
 
-/* 5. Selection Section (Join)
+/* 5. Cards & Grids (The Display)
    ========================================================================== */
-.join-container {
-    padding: 80px 0;
-    margin-top: -60px;
+.join-container { margin-top: -50px; padding-bottom: 80px; }
+
+.card {
+    background: var(--white);
+    border-radius: 0; /* Square edges for luxury feel */
+    border-top: 4px solid var(--gold-primary);
+    padding: 45px 35px;
+    box-shadow: var(--shadow-dark);
+    transition: var(--transition-royal);
     position: relative;
-    z-index: 10;
+    overflow: hidden;
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 32px;
-    justify-content: center;
+.card:hover {
+    transform: translateY(-15px);
+    box-shadow: var(--shadow-gold);
 }
+
+.card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%; width: 50%; height: 100%;
+    background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.1), transparent);
+    transform: skewX(-25deg);
+    transition: 0.7s;
+}
+
+.card:hover::after { left: 150%; }
 
 .card-icon {
-    width: 80px;
-    height: 80px;
-    background: var(--bg-alt);
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2.5rem;
-    margin: 0 auto 1.5rem;
-    transition: transform 0.3s ease;
-}
-
-.card:hover .card-icon {
-    transform: scale(1.1) rotate(5deg);
+    font-size: 3.5rem;
+    color: var(--gold-primary);
+    margin-bottom: 25px;
+    display: block;
 }
 
 .card h3 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: var(--text-heading);
+    font-size: 1.6rem;
+    color: var(--gray-dark);
+    margin-bottom: 15px;
+    font-weight: 800;
 }
 
-.card p {
-    color: var(--text-muted);
-    margin-bottom: 2rem;
-    line-height: 1.8;
-}
-
-/* Role-Specific Buttons */
-.btn-vendor {
-    background-color: var(--vendor-main);
-    color: var(--white);
-    width: 100%;
-}
-
-.btn-vendor:hover {
-    background-color: #92400e;
-    box-shadow: 0 10px 20px rgba(180, 83, 9, 0.2);
-}
-
-.btn-customer {
-    background-color: var(--customer-main);
-    color: var(--white);
-    width: 100%;
-}
-
-.btn-customer:hover {
-    background-color: #064e3b;
-    box-shadow: 0 10px 20px rgba(6, 95, 70, 0.2);
-}
-
-/* 6. Forms & Authentication
+/* 6. Buttons (Golden Touch)
    ========================================================================== */
-.form-wrapper {
-    min-height: 90vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 40px 20px;
-    background: radial-gradient(circle at top right, var(--bg-alt), var(--bg-main));
+.btn {
+    padding: 14px 30px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 0;
+    transition: var(--transition-royal);
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    border: 2px solid transparent;
 }
 
+.btn-vendor, .btn-customer {
+    background: var(--gray-dark);
+    color: var(--gold-primary);
+    border: 2px solid var(--gold-primary);
+}
+
+.btn-vendor:hover, .btn-customer:hover {
+    background: var(--gold-gradient);
+    color: var(--gray-dark);
+    box-shadow: var(--shadow-gold);
+}
+
+/* 7. Form Aesthetics
+   ========================================================================== */
 .form-container {
     background: var(--white);
-    padding: 3rem;
-    border-radius: var(--radius-lg);
-    width: 100%;
-    max-width: 500px;
-    box-shadow: var(--shadow-premium);
-    border: 1px solid var(--border-light);
-}
-
-.form-header {
-    text-align: center;
-    margin-bottom: 2.5rem;
-}
-
-.form-header h2 {
-    font-size: 1.75rem;
-    font-weight: 800;
-    color: var(--text-heading);
-    margin-bottom: 0.5rem;
-}
-
-.input-group {
-    margin-bottom: 1.5rem;
+    border: 1px solid var(--gold-primary);
+    padding: 50px;
+    box-shadow: var(--shadow-dark);
 }
 
 .input-group label {
-    display: block;
-    font-weight: 600;
-    font-size: 0.875rem;
-    color: var(--text-body);
-    margin-bottom: 0.5rem;
+    color: var(--gray-dark);
+    font-weight: 700;
+    font-size: 0.9rem;
 }
 
-.input-group input, 
-.input-group select,
-.input-group textarea {
-    width: 100%;
-    padding: 14px 18px;
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius-md);
-    font-family: inherit;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    background: var(--bg-alt);
+.input-group input, .input-group select, .input-group textarea {
+    border: 1px solid #DDD;
+    background: #FAFAFA;
+    padding: 15px;
+    border-radius: 0;
+    transition: var(--transition-royal);
 }
 
-.input-group input:focus, 
-.input-group select:focus,
-.input-group textarea:focus {
-    outline: none;
-    border-color: var(--accent);
+.input-group input:focus {
+    border-color: var(--gold-primary);
     background: var(--white);
-    box-shadow: 0 0 0 4px rgba(197, 160, 89, 0.1);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+    outline: none;
 }
 
-/* 7. Dashboard (Vendor)
+/* 8. Dashboard & Stats
    ========================================================================== */
 .dashboard-nav {
-    background: var(--primary);
-    padding: 1rem 0;
-    color: var(--white);
-}
-
-.dash-nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.dash-welcome-section {
-    background: var(--white);
-    padding: 2.5rem;
-    border-radius: var(--radius-lg);
-    margin-bottom: 2.5rem;
-    border-right: 5px solid var(--accent);
-    box-shadow: var(--shadow-md);
-}
-
-.stats-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 20px;
-    margin-bottom: 3rem;
+    background: var(--gray-dark);
+    border-bottom: 3px solid var(--gold-primary);
 }
 
 .stat-card {
     background: var(--white);
-    padding: 1.5rem;
-    border-radius: var(--radius-md);
-    display: flex;
-    align-items: center;
-    gap: 1.25rem;
-    border: 1px solid var(--border-light);
+    border-left: 5px solid var(--gold-primary);
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
 }
 
 .stat-icon {
-    width: 56px;
-    height: 56px;
-    border-radius: 14px;
-    background: var(--bg-alt);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    color: var(--accent);
+    background: var(--gray-dark);
+    color: var(--gold-primary);
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
 }
 
-/* 8. Products & Market
+/* 9. Product Cards (Premium Display)
    ========================================================================== */
-.products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 30px;
-}
-
 .product-card {
     background: var(--white);
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    transition: all 0.3s ease;
-    border: 1px solid var(--border-light);
+    border: 1px solid #EEE;
+    transition: var(--transition-royal);
 }
 
 .product-card:hover {
-    box-shadow: var(--shadow-lg);
-}
-
-.prod-card-img-wrapper {
-    position: relative;
-    aspect-ratio: 1/1;
-    overflow: hidden;
-}
-
-.prod-card-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-.product-card:hover .prod-card-img {
-    transform: scale(1.1);
-}
-
-.prod-card-body {
-    padding: 1.25rem;
-}
-
-.prod-card-tag {
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 0.5rem;
-    display: block;
-}
-
-.prod-card-title {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--text-heading);
-    margin-bottom: 0.5rem;
+    border-color: var(--gold-primary);
+    box-shadow: var(--shadow-gold);
 }
 
 .prod-card-price {
-    font-size: 1.25rem;
+    color: var(--gold-dark);
+    font-size: 1.4rem;
     font-weight: 800;
-    color: var(--primary);
 }
 
-/* 9. Market UI (Shopper Experience)
+.btn-whatsapp-style {
+    background: #25D366;
+    color: white;
+    border-radius: 0;
+    font-weight: 800;
+}
+
+/* 10. Market UI
    ========================================================================== */
-.market-header {
-    background: var(--primary);
-    color: var(--white);
-    padding: 1.25rem 0;
-}
-
 .search-filter-section {
-    background: var(--primary-light);
-    padding: 60px 0;
-    position: relative;
+    background: var(--gray-dark);
+    padding: 80px 0;
+    border-bottom: 5px solid var(--gold-primary);
 }
 
 .search-input {
-    width: 100%;
-    padding: 1.25rem 2rem;
-    border-radius: var(--radius-full);
-    border: none;
-    font-size: 1.1rem;
-    box-shadow: var(--shadow-xl);
+    border: 2px solid var(--gold-primary);
+    border-radius: 0;
+    padding: 20px 30px;
+    font-size: 1.2rem;
 }
 
 .hero-swiper {
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    height: 450px;
-    box-shadow: var(--shadow-xl);
-}
-
-.slide-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 3rem;
-    color: var(--white);
-}
-
-/* 10. Modals & Popups
-   ========================================================================== */
-.modal-backdrop {
-    background: rgba(15, 23, 42, 0.8);
-    backdrop-filter: blur(8px);
-}
-
-.modal-content {
-    border-radius: var(--radius-lg);
-    border: none;
-    padding: 2.5rem;
-    box-shadow: var(--shadow-premium);
+    border: 3px solid var(--gold-primary);
 }
 
 /* 11. Footer
    ========================================================================== */
 .footer {
-    background: var(--primary);
-    color: var(--text-light);
-    padding: 4rem 0 2rem;
-    text-align: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    background: var(--gray-dark);
+    color: #888;
+    padding: 60px 0;
+    border-top: 2px solid var(--gold-primary);
 }
 
-/* 12. Responsive Design
+/* 12. Mobile Optimization
    ========================================================================== */
-@media (max-width: 1024px) {
-    :root { --container-max: 960px; }
-}
-
 @media (max-width: 768px) {
-    .navbar .container {
-        flex-direction: column;
-        gap: 1rem;
-    }
-    
-    .hero { padding: 80px 0 60px; }
-    
-    .grid { grid-template-columns: 1fr; }
-    
-    .form-container { padding: 2rem; }
-    
-    .hero-swiper { height: 300px; }
-    
-    .stats-container { grid-template-columns: 1fr; }
-}
-
-@media (max-width: 480px) {
-    .hero-content h2 { font-size: 1.75rem; }
-    
-    .btn { width: 100%; }
-    
-    .nav-links { width: 100%; justify-content: center; flex-wrap: wrap; }
-}
-
-/* Animations */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.card, .hero-content, .form-container {
-    animation: fadeIn 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    .hero-content h2 { font-size: 2.2rem; }
+    .navbar .container { flex-direction: column; gap: 15px; }
+    .grid { gap: 20px; }
+    .card { padding: 30px 20px; }
 }
