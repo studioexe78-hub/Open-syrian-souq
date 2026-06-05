@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>السوق السوري المفتوح | أول مول افتراضي في سوريا</title>
+    <!-- ربط ملف الستايل الخارجي -->
+    <link rel="stylesheet" href="style.css">
+    <!-- استدعاء خطوط جوجل لتصميم عربي أنيق -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- 1. شريط التنقل العلوي (Navbar) -->
+    <header class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h1>السوق السوري المفتوح</h1>
+            </div>
+            <nav class="nav-links">
+                <a href="#" class="btn-login">تسجيل الدخول</a>
+                <a href="#join-section" class="btn-register">ابدأ الآن</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 2. قسم الترحيب والتعريف (Hero Section) -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h2>مرحباً بك في أكبر مول افتراضي سوري</h2>
+            <p>سواء كنت صاحب محل وبدك تزيد مبيعاتك، أو زبون وعم تدوّر على أحسن العروض، مكانك هون!</p>
+        </div>
+    </section>
+
+    <!-- 3. قسم الاختيار: زبون أو تاجر (Join Section) -->
+    <section id="join-section" class="join-container">
+        <div class="container grid">
+            
+            <!-- بطاقة التاجر -->
+            <div class="card vendor-card">
+                <div class="card-icon">🏪</div>
+                <h3>أنا بائع / صاحب مصلحة</h3>
+                <p>افتح متجرك الافتراضي مجاناً اليوم، ارفع منتجاتك، تواصل مع زباينك مباشرة عبر الواتساب وزيّد أرباحك من أي محافظة بسوريا.</p>
+                <!-- الزر سيوجه لصفحة تسجيل التجار مستقبلاً -->
+                <a href="register-vendor.html" class="btn btn-vendor">افتح متجرك الآن</a>
+            </div>
+
+            <!-- بطاقة الزبون -->
+            <div class="card customer-card">
+                <div class="card-icon">🛍️</div>
+                <h3>أنا مشتري / زبون</h3>
+                <p>تصفح آلاف المنتجات والعقارات والخدمات في محافظتك، قارن الأسعار، وتواصل مع البائع فوراً وبدون أي عمولات أو وسيط.</p>
+                <!-- الزر سيوجه لصفحة تسجيل الزبائن مستقبلاً -->
+                <a href="register-customer.html" class="btn btn-customer">ابدأ بالتسوق</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 4. تذييل الصفحة (Footer) -->
+    <footer class="footer">
+        <p>&copy; 2026 السوق السوري المفتوح. جميع الحقوق محفوظة.</p>
+    </footer>
+
+</body>
+</html>
