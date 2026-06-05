@@ -349,3 +349,213 @@ body {
     border-color: #f97316 !important;
     box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1) !important;
 }
+/* ==========================================================================
+   8. تنسيقات لوحة تحكم التاجر (Dashboard & Modal)
+   ========================================================================== */
+.dashboard-nav {
+    background-color: #0f172a;
+    color: #ffffff;
+    padding: 15px 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.dash-nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dash-logo h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.dash-user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#shop-title-display {
+    font-weight: 600;
+    color: #f97316; /* اللون البرتقالي للتاجر */
+    font-size: 0.95rem;
+}
+
+.btn-logout {
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: background 0.3s;
+}
+
+.btn-logout:hover {
+    background-color: #b91c1c;
+}
+
+.dash-main {
+    padding-top: 40px;
+    padding-bottom: 60px;
+}
+
+.dash-welcome-section {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+}
+
+.dash-welcome-section h3 {
+    font-size: 1.6rem;
+    color: #1e293b;
+    margin-bottom: 8px;
+}
+
+.dash-welcome-section p {
+    color: #64748b;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+}
+
+.dash-welcome-section .btn-vendor {
+    display: inline-block;
+    width: auto !important;
+    padding: 10px 25px;
+}
+
+.dash-divider {
+    margin: 40px 0;
+    border: 0;
+    border-top: 1px solid #e2e8f0;
+}
+
+.section-title {
+    font-size: 1.3rem;
+    color: #1e293b;
+    margin-bottom: 20px;
+}
+
+.no-products {
+    background-color: #f1f5f9;
+    border: 2px dashed #cbd5e1;
+    padding: 40px;
+    text-align: center;
+    border-radius: 12px;
+    color: #64748b;
+}
+
+.grid-2-col {
+    display: flex;
+    gap: 15px;
+}
+
+.grid-2-col .input-group {
+    flex: 1;
+}
+
+/* تنسيق حقل النص الكبير */
+.input-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    background-color: #f8fafc;
+    font-family: 'Cairo', sans-serif;
+    outline: none;
+    resize: vertical;
+}
+.input-group textarea:focus {
+    border-color: #f97316;
+    background-color: #ffffff;
+}
+
+/* ==========================================================================
+   9. ستايل النافذة المنبثقة (Modal Pop-up)
+   ========================================================================== */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15, 23, 42, 0.6); /* خلفية معتمة */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    padding: 15px;
+}
+
+/* فئة برمجية لإظهار المودال عبر الـ JS */
+.modal-backdrop.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-content {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 550px;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+    max-height: 90vh;
+    overflow-y: auto; /* للسماح بالتمرير لو شاشة الموبايل صغيرة */
+}
+
+.modal-backdrop.show .modal-content {
+    transform: translateY(0);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 15px;
+}
+
+.modal-header h3 {
+    font-size: 1.3rem;
+    color: #1e293b;
+}
+
+.close-modal-btn {
+    font-size: 1.8rem;
+    color: #94a3b8;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-modal-btn:hover {
+    color: #ef4444;
+}
+
+/* تفاعل إضافي للموبايل */
+@media (max-width: 768px) {
+    .dash-nav-container {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    .grid-2-col {
+        flex-direction: column;
+        gap: 0;
+    }
+    .modal-content {
+        padding: 20px 15px;
+    }
+}
