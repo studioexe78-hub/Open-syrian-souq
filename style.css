@@ -343,3 +343,9 @@ body {
         background-color: transparent; /* يندمج مع خلفية الصفحة الرمادية الخفيفة */
     }
 }
+/* تفاعل حقول البائع باللون البرتقالي عند الضغط */
+#vendor-register-form input:focus, 
+#vendor-register-form select:focus {
+    border-color: #f97316 !important;
+    box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1) !important;
+}
