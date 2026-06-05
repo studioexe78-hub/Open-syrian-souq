@@ -185,6 +185,18 @@ function activateCardClicks() {
     });
 }
 
+// دالة مساعدة لتنسيق رقم الهاتف السوري
+function formatSyrianPhoneNumber(phone) {
+    if (!phone) return "";
+    let cleanPhone = phone.toString().trim();
+    // إذا كان يبدأ بـ 0، نحذفه
+    if (cleanPhone.startsWith("0")) {
+        cleanPhone = cleanPhone.substring(1);
+    }
+    // إضافة الكود الدولي السوري
+    return "+963" + cleanPhone;
+}
+
 // 8. فتح نافذة تفاصيل المنتج (Modal)
 const detailsModal = document.getElementById("details-modal");
 const btnCloseDetails = document.getElementById("btn-close-details");
@@ -203,10 +215,13 @@ function openProductDetails(prodId) {
     document.getElementById("modal-prod-cat").textContent = prod.category;
     document.getElementById("modal-prod-desc").textContent = prod.description;
 
+    // تنسيق رقم الهاتف
+    const formattedPhone = formatSyrianPhoneNumber(vendorInfo.phone);
+
     // زر الواتساب داخل المودال
     const whatsappBtn = document.getElementById("btn-modal-whatsapp");
     const message = encodeURIComponent(`مرحباً ${vendorInfo.shopName}، أنا مهتم بشراء منتجك المعروض في السوق المفتوح: (${prod.name}) بسعر ${prod.price.toLocaleString()} ل.س. هل هو متوفر؟`);
-    whatsappBtn.href = `https://wa.me/${vendorInfo.phone}?text=${message}`;
+    whatsappBtn.href = `https://wa.me/${formattedPhone}?text=${message}`;
 
     detailsModal.classList.add("show");
 }
@@ -221,8 +236,11 @@ function redirectToWhatsapp(prodId) {
     const vendorInfo = allVendors[prod.vendorId];
     if (!vendorInfo || !vendorInfo.phone) return alert("عذراً، رقم هاتف هذا التاجر غير متوفر!");
 
+    // تنسيق رقم الهاتف
+    const formattedPhone = formatSyrianPhoneNumber(vendorInfo.phone);
+
     const message = encodeURIComponent(`مرحباً ${vendorInfo.shopName}، رأيت إعلان منتجك (${prod.name}) في السوق المفتوح وأود الاستفسار عنه.`);
-    window.open(`https://wa.me/${vendorInfo.phone}?text=${message}`, "_blank");
+    window.open(`https://wa.me/${formattedPhone}?text=${message}`, "_blank");
 }
 
 // ==========================================================================
