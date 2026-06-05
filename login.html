@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول | السوق السوري المفتوح</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h1>السوق السوري المفتوح</h1>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html" class="btn-login">الرئيسية</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="form-wrapper">
+        <div class="form-container">
+            <div class="form-header">
+                <span class="form-icon">🔑</span>
+                <h2>تسجيل الدخول</h2>
+                <p>أهلاً بك مجدداً في السوق السوري المفتوح</p>
+            </div>
+
+            <form id="login-form">
+                
+                <div class="input-group">
+                    <label for="login-email">البريد الإلكتروني</label>
+                    <input type="email" id="login-email" placeholder="example@mail.com" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="login-password">كلمة السر</label>
+                    <input type="password" id="login-password" placeholder="أدخل كلمة السر الخاصة بك" required>
+                </div>
+
+                <button type="submit" class="btn btn-register btn-block">دخول</button>
+                
+                <p class="form-footer-text">ليس لديك حساب بعد؟ <br>
+                    سجل كـ <a href="register-customer.html" style="color: #10b981;">زبون</a> أو كـ <a href="register-vendor.html" style="color: #f97316;">تاجر</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
