@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>لوحة تحكم المتجر | السوق السوري المفتوح</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+
+<link rel="stylesheet" href="style.css">
+
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -130,5 +135,20 @@
         </div>
     </div>
     <script type="module" src="vendor-dashboard.js"></script>
+            <div id="cropper-modal" class="modal-backdrop">
+        <div class="modal-content" style="max-width: 450px;">
+            <div class="modal-header">
+                <h3>✂️ ضبط وقص صورة المنتج</h3>
+            </div>
+            <div style="max-height: 300px; overflow: hidden; background: #000; display: flex; justify-content: center; align-items: center;">
+                <img id="image-to-crop" style="max-width: 100%; display: block;">
+            </div>
+            <div style="margin-top: 20px; display: flex; gap: 10px;">
+                <button id="btn-crop-done" class="btn btn-vendor" style="flex: 1;">اعتماد وقص الصورة</button>
+                <button id="btn-crop-cancel" class="btn" style="flex: 1; background-color: #cbd5e1; color: #334155;">إلغاء</button>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
